@@ -1,0 +1,40 @@
+<div style="padding: 60px;">
+
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <mat-form-field appearance="standar">
+                <mat-label>Search for book title</mat-label>
+                <input matInput #titleInput placeholder="Enter a book title">
+            </mat-form-field>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row>
+            <mat-form-field appearance="standar">
+                <mat-label>Search for book author</mat-label>
+                <input matInput #authorInput placeholder="Enter a book title">
+            </mat-form-field>
+        </mat-toolbar-row>
+                    
+        <mat-toolbar-row>
+            <button mat-raised-button color="primary" (click)="getParam(titleInput.value, authorInput.value)">Search</button>
+        </mat-toolbar-row>
+
+    </mat-toolbar>
+
+    <div class="text-center" *ngIf="error != null">
+        <h3>Sorry, no books were found</h3>
+    </div>
+
+    <mat-spinner *ngIf="products === null && error === null"></mat-spinner>
+
+    <mat-card *ngFor="let product of products">
+        <mat-card-header>
+            <mat-card-title>{{product.title}}</mat-card-title>
+            <mat-card-subtitle>{{product.author}} $/ {{product.author}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <img style="height:100%; width: 100%;" src="{{ product.imageURL }}" />
+        </mat-card-content>
+    </mat-card>
+</div>
